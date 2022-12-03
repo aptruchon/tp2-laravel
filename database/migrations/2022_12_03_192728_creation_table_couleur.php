@@ -8,29 +8,29 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     * Création de la table couleur
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('couleur', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->id("img_id")->unique();
+            $table->string('codeHexa')->unique();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
     /**
      * Reverse the migrations.
+     * Destruction de la table couleur
      *
      * @return void
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('couleur');
     }
 };

@@ -8,29 +8,30 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     * Création de la table visite
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('failed_jobs', function (Blueprint $table) {
+        Schema::create('visite', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid')->unique();
-            $table->text('connection');
-            $table->text('queue');
-            $table->longText('payload');
-            $table->longText('exception');
-            $table->timestamp('failed_at')->useCurrent();
+            $table->id("img_id")->unique();
+            $table->date("date");
+            $table->string("userAgent");
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
     /**
      * Reverse the migrations.
+     * Destruction de la table visite
      *
      * @return void
      */
     public function down()
     {
-        Schema::dropIfExists('failed_jobs');
+        Schema::dropIfExists('visite');
     }
 };

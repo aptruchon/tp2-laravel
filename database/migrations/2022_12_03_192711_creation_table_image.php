@@ -8,30 +8,32 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
+     * Création de la table image
+     * 
      * @return void
      */
     public function up()
     {
-        Schema::create('personal_access_tokens', function (Blueprint $table) {
+        Schema::create('image', function (Blueprint $table) {
             $table->id();
-            $table->morphs('tokenable');
-            $table->string('name');
-            $table->string('token', 64)->unique();
-            $table->text('abilities')->nullable();
-            $table->timestamp('last_used_at')->nullable();
-            $table->timestamp('expires_at')->nullable();
+            $table->id("col_id");
+            $table->string('url')->unique();
+            $table->integer('width');
+            $table->integer('height');
+            $table->string('slug')->unique();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
     /**
      * Reverse the migrations.
-     *
+     * Destruction de la table image
+     * 
      * @return void
      */
     public function down()
     {
-        Schema::dropIfExists('personal_access_tokens');
+        Schema::dropIfExists('image');
     }
 };
