@@ -3,14 +3,22 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
-class image extends Model
+class Image extends Model
 {
     use HasFactory;
+    use SoftDeletes;
     
     // Empêche _aucune_ colonne d'être remplie
-    protected $guarded = [];
+    protected $fillable = [
+        "col_id",
+        "url",
+        "width",
+        "height",
+        "slug"
+    ];
 
     public function collection()
     {

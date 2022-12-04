@@ -3,14 +3,20 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
-class visite extends Model
+class Visite extends Model
 {
     use HasFactory;
+    use SoftDeletes;
     
     // Empêche _aucune_ colonne d'être remplie
-    protected $guarded = [];
+    protected $fillable = [
+        "img_id",
+        "date",
+        "userAgent"
+    ];
 
     public function Image()
     {
